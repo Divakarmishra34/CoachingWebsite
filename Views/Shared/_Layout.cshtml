@@ -1,0 +1,400 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>
+        @ViewData["Title"] - CoachingWebsite
+    </title>
+
+    <link rel="stylesheet"
+          href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <link rel="stylesheet"
+          href="~/css/site.css"
+          asp-append-version="true" />
+
+    <link rel="stylesheet"
+          href="~/CoachingWebsite.styles.css"
+          asp-append-version="true" />
+
+</head>
+
+<body>
+
+
+    <!-- LOADER -->
+
+    <div id="loader">
+
+        <div class="spinner-border text-primary"
+             role="status">
+        </div>
+
+    </div>
+
+
+    <!-- TOP BUTTON -->
+
+    <a href="#"
+       class="btn btn-primary"
+       id="topBtn"
+       style="position:fixed;
+              bottom:20px;
+              right:20px;
+              border-radius:50%;
+              z-index:999;">
+
+        ↑
+
+    </a>
+
+
+    <!-- NAVBAR -->
+
+    <header>
+
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark shadow">
+
+            <div class="container-fluid">
+
+                <a class="navbar-brand fw-bold text-warning"
+                   asp-area=""
+                   asp-controller="Home"
+                   asp-action="Index">
+
+                    Coaching Institute
+
+                </a>
+
+
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarContent">
+
+                    <span class="navbar-toggler-icon"></span>
+
+                </button>
+
+
+                <div class="collapse navbar-collapse"
+                     id="navbarContent">
+
+
+                    <!-- SEARCH -->
+
+                    <form class="d-flex me-3"
+                          method="get"
+                          action="/Student/List">
+
+                        <input class="form-control me-2"
+                               type="search"
+                               name="search"
+                               placeholder="Search Student" />
+
+                        <button class="btn btn-warning"
+                                type="submit">
+
+                            Search
+
+                        </button>
+
+                    </form>
+
+
+                    <!-- NAV LINKS -->
+
+                    <ul class="navbar-nav flex-grow-1">
+
+
+                        <li class="nav-item">
+
+                            <a class="nav-link @(ViewContext.RouteData.Values["Action"]?.ToString()=="Index" ? "active text-warning" : "text-light")"
+                               asp-controller="Home"
+                               asp-action="Index">
+
+                                Home
+
+                            </a>
+
+                        </li>
+
+
+                        <li class="nav-item">
+
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString()=="Course" ? "active text-warning" : "text-light")"
+                               asp-controller="Course"
+                               asp-action="Index">
+
+                                Courses
+
+                            </a>
+
+                        </li>
+
+
+                        <li class="nav-item">
+
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString()=="Student" ? "active text-warning" : "text-light")"
+                               asp-controller="Student"
+                               asp-action="Register">
+
+                                Register
+
+                            </a>
+
+                        </li>
+
+
+                        <li class="nav-item">
+
+                            <a class="nav-link text-light"
+                               asp-controller="Home"
+                               asp-action="About">
+
+                                About
+
+                            </a>
+
+                        </li>
+
+
+                        <li class="nav-item">
+
+                            <a class="nav-link text-light"
+                               asp-controller="Home"
+                               asp-action="Contact">
+
+                                Contact
+
+                            </a>
+
+                        </li>
+
+
+                        <!-- ADMIN ONLY -->
+
+                        @if (User.Identity.Name == "admin")
+                        {
+
+                            <li class="nav-item">
+
+                                <a class="nav-link text-light"
+                                   href="/Dashboard">
+
+                                    Dashboard
+
+                                </a>
+
+                            </li>
+
+
+                            <li class="nav-item">
+
+                                <a class="nav-link text-light"
+                                   href="/Teacher/Register">
+
+                                    Add Teacher
+
+                                </a>
+
+                            </li>
+
+
+                            <li class="nav-item">
+
+                                <a class="nav-link text-light"
+                                   href="/Teacher/List">
+
+                                    Teacher List
+
+                                </a>
+
+                            </li>
+
+                        }
+
+
+                    </ul>
+
+
+                    <!-- RIGHT SIDE -->
+
+                    <div class="d-flex align-items-center">
+
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+
+                            <span class="text-warning fw-bold me-3">
+
+                                Welcome @User.Identity.Name
+
+                            </span>
+
+
+                            <a href="/Account/Profile"
+                               class="btn btn-outline-light me-2">
+
+                                Profile
+
+                            </a>
+
+
+                            <a href="/Account/ChangePassword"
+                               class="btn btn-warning me-2">
+
+                                Change Password
+
+                            </a>
+
+
+                            <a href="/Account/Logout"
+                               class="btn btn-danger me-2">
+
+                                Logout
+
+                            </a>
+
+                        }
+                        else
+                        {
+
+                            <a href="/Account/Login"
+                               class="btn btn-success me-2">
+
+                                Login
+
+                            </a>
+
+                        }
+
+
+                        <!-- DARK MODE -->
+
+                        <button class="btn btn-outline-light"
+                                id="darkModeBtn">
+
+                            🌙
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <!-- MAIN BODY -->
+
+    <div class="container">
+
+        <main role="main"
+              class="pb-3">
+
+            @RenderBody()
+
+        </main>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <footer class="bg-dark text-white text-center p-4 mt-5">
+
+        <h5>
+            Coaching Management System
+        </h5>
+
+        <p>
+            © 2026 All Rights Reserved
+        </p>
+
+        <p>
+            Designed By Divakar
+        </p>
+
+        <div>
+
+            <a href="#"
+               class="text-warning me-3">
+
+                Facebook
+
+            </a>
+
+            <a href="#"
+               class="text-warning me-3">
+
+                Instagram
+
+            </a>
+
+            <a href="#"
+               class="text-warning">
+
+                YouTube
+
+            </a>
+
+        </div>
+
+    </footer>
+
+
+    <!-- SCRIPTS -->
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/js/site.js"
+            asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+
+    <!-- DARK MODE -->
+
+    <script>
+
+        const darkBtn =
+            document.getElementById("darkModeBtn");
+
+        darkBtn.addEventListener("click",
+        function ()
+        {
+            document.body.classList.toggle("dark-mode");
+        });
+
+    </script>
+
+
+    <!-- LOADER -->
+
+    <script>
+
+        window.addEventListener("load",
+        function ()
+        {
+            document.getElementById("loader")
+                .style.display = "none";
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+@model CoachingWebsite.Models.Teacher
+
+<div class="container mt-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+
+            <div class="card shadow p-4">
+
+                <h2 class="text-center mb-4">
+                    Edit Teacher
+                </h2>
+
+                <form method="post">
+
+                    <input asp-for="Id" type="hidden" />
+
+                    <div class="mb-3">
+
+                        <label>Name</label>
+
+                        <input asp-for="Name"
+                               class="form-control" />
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label>Subject</label>
+
+                        <input asp-for="Subject"
+                               class="form-control" />
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label>Email</label>
+
+                        <input asp-for="Email"
+                               class="form-control" />
+
+                    </div>
+
+                    <button class="btn btn-dark w-100">
+                        Update Teacher
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

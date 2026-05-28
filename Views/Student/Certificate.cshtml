@@ -1,0 +1,89 @@
+@model CoachingWebsite.Models.Student
+<div class="text-center mt-4">
+
+    <button onclick="window.print()"
+            class="btn btn-primary">
+
+        Print Certificate
+
+    </button>
+
+</div>
+<div class="container mt-5">
+
+    <div class="border border-5 border-dark p-5 text-center">
+
+        <h1 class="text-primary">
+
+            Certificate Of Completion
+
+        </h1>
+
+        <hr />
+
+        <h3 class="mt-5">
+
+            This Certificate Is Proudly Presented To
+
+        </h3>
+
+        <h1 class="fw-bold text-success mt-4">
+
+            @Model.Name
+
+        </h1>
+
+        <p class="mt-4 fs-4">
+
+            For Successfully Completing
+
+        </p>
+
+        <h2 class="text-danger">
+
+            @Model.Course
+
+        </h2>
+
+        <div class="row mt-5">
+
+            <div class="col-md-6 text-start">
+
+                <h5>
+                    Date:
+                </h5>
+
+                <p>
+                    @DateTime.Now.ToShortDateString()
+                </p>
+
+            </div>
+
+            <div class="col-md-6 text-end">
+
+                <h5>
+                    Signature
+                </h5>
+
+                <p>
+                    Coaching Institute
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<style>
+
+    @@media print
+    {
+        .btn
+        {
+            display: none;
+        }
+    }
+
+</style>

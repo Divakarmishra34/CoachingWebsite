@@ -1,0 +1,208 @@
+@model CoachingWebsite.Models.Student
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="container mt-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+
+            <div class="card shadow-lg border-0 rounded-4 p-5">
+
+                <div class="text-center mb-4">
+
+                    <h1 class="fw-bold text-success">
+
+                        Create Account
+
+                    </h1>
+
+                    <p class="text-muted">
+
+                        Register New User 🚀
+
+                    </p>
+
+                </div>
+
+
+                <form method="post"
+                      enctype="multipart/form-data">
+
+                    <div asp-validation-summary="All"
+                         class="text-danger mb-3">
+                    </div>
+
+
+                    <!-- NAME -->
+
+                    <div class="mb-4">
+
+                        <label class="form-label">
+
+                            Name
+
+                        </label>
+
+                        <input asp-for="Name"
+                               class="form-control form-control-lg" />
+
+                        <span asp-validation-for="Name"
+                              class="text-danger">
+                        </span>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="mb-4">
+
+                        <label class="form-label">
+
+                            Email
+
+                        </label>
+
+                        <input asp-for="Email"
+                               class="form-control form-control-lg" />
+
+                        <span asp-validation-for="Email"
+                              class="text-danger">
+                        </span>
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="mb-4">
+
+                        <label class="form-label">
+
+                            Password
+
+                        </label>
+
+                        <input asp-for="Password"
+                               type="password"
+                               class="form-control form-control-lg" />
+
+                        <span asp-validation-for="Password"
+                              class="text-danger">
+                        </span>
+
+                    </div>
+
+
+                    <!-- COURSE -->
+
+                    <div class="mb-4">
+
+                        <label class="form-label">
+
+                            Course
+
+                        </label>
+
+                        <select asp-for="Course"
+                                class="form-select form-select-lg">
+
+                            <option value="">
+                                Select Course
+                            </option>
+
+                            <option>
+                                Maths
+                            </option>
+
+                            <option>
+                                Science
+                            </option>
+
+                            <option>
+                                English
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- IMAGE PREVIEW -->
+
+                    <div class="mb-3 text-center">
+
+                        <img id="previewImage"
+                             width="150"
+                             class="rounded shadow"
+                             style="display:none;" />
+
+                    </div>
+
+
+                    <!-- IMAGE FILE -->
+
+                    <div class="mb-4">
+
+                        <label class="form-label">
+
+                            Upload Image
+
+                        </label>
+
+                        <input type="file"
+                               name="imageFile"
+                               class="form-control form-control-lg"
+                               onchange="loadImage(event)" />
+
+                    </div>
+
+
+                    <!-- BUTTON -->
+
+                    <button class="btn btn-success w-100 btn-lg">
+
+                        Register
+
+                    </button>
+
+                </form>
+
+
+                <div class="text-center mt-4">
+
+                    <a href="/Account/Login">
+
+                        Already have account? Login
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    function loadImage(event)
+    {
+        var image =
+            document.getElementById('previewImage');
+
+        image.style.display = "block";
+
+        image.src =
+            URL.createObjectURL(event.target.files[0]);
+    }
+
+</script>

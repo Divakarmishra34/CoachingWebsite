@@ -1,0 +1,318 @@
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container mt-5">
+
+    <h1 class="text-center mb-5 fw-bold">
+        Admin Dashboard
+    </h1>
+
+    <div class="text-center mb-5">
+
+        <a href="/Student/Register"
+           class="btn btn-primary me-2">
+            Add Student
+        </a>
+
+        <a href="/Student/List"
+           class="btn btn-success">
+            View Students
+        </a>
+
+    </div>
+
+
+    <!-- TOP CARDS -->
+
+    <div class="row">
+
+        <!-- TOTAL STUDENTS -->
+
+        <div class="col-md-4 mb-4">
+
+            <div class="card shadow-lg p-4 text-center bg-primary text-white border-0 rounded-4">
+
+                <h3 class="fw-bold">
+                    Total Students
+                </h3>
+
+                <h1 class="display-4 fw-bold text-white">
+                    @ViewBag.TotalStudents
+                </h1>
+
+            </div>
+
+        </div>
+
+
+        <!-- TOTAL COURSES -->
+
+        <div class="col-md-4 mb-4">
+
+            <div class="card shadow-lg p-4 text-center bg-success text-white border-0 rounded-4">
+
+                <h3 class="fw-bold">
+                    Total Courses
+                </h3>
+
+                <h1 class="display-4 fw-bold text-white">
+                    @ViewBag.TotalCourses
+                </h1>
+
+            </div>
+
+        </div>
+
+
+        <!-- TOTAL TEACHERS -->
+
+        <div class="col-md-4 mb-4">
+
+            <div class="card shadow-lg p-4 text-center bg-dark text-white border-0 rounded-4">
+
+                <h3 class="fw-bold">
+                    Total Teachers
+                </h3>
+
+                <h1 class="display-4 fw-bold text-white">
+                    @ViewBag.TotalTeachers
+                </h1>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- RECENT STUDENTS -->
+
+    <div class="mt-5">
+
+        <h2 class="mb-4 fw-bold">
+            Recent Students
+        </h2>
+
+        <table class="table table-bordered table-striped shadow">
+
+            <thead class="table-dark">
+
+                <tr>
+
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Course</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                @foreach (var student in ViewBag.RecentStudents)
+                {
+                    <tr>
+
+                        <td>@student.Name</td>
+
+                        <td>@student.Email</td>
+
+                        <td>@student.Course</td>
+
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <!-- COURSE STATS -->
+
+    <div class="row mt-5">
+
+        <div class="col-md-4 mb-4">
+
+            <div class="card p-4 shadow-lg text-center bg-success text-white border-0 rounded-4">
+
+                <h3 class="fw-bold">
+                    Maths Students
+                </h3>
+
+                <h1 class="display-5 fw-bold">
+                    @ViewBag.MathsCount
+                </h1>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-4 mb-4">
+
+            <div class="card p-4 shadow-lg text-center bg-info text-dark border-0 rounded-4">
+
+                <h3 class="fw-bold">
+                    Science Students
+                </h3>
+
+                <h1 class="display-5 fw-bold">
+                    @ViewBag.ScienceCount
+                </h1>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-4 mb-4">
+
+            <div class="card p-4 shadow-lg text-center bg-danger text-white border-0 rounded-4">
+
+                <h3 class="fw-bold">
+                    English Students
+                </h3>
+
+                <h1 class="display-5 fw-bold">
+                    @ViewBag.EnglishCount
+                </h1>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ATTENDANCE -->
+
+    <div class="row mt-5">
+
+        <div class="col-md-6 mb-4">
+
+            <div class="card p-4 shadow-lg text-center bg-success text-white border-0 rounded-4">
+
+                <h3 class="fw-bold">
+                    Present Students
+                </h3>
+
+                <h1 class="display-5 fw-bold">
+                    @ViewBag.PresentStudents
+                </h1>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-6 mb-4">
+
+            <div class="card p-4 shadow-lg text-center bg-danger text-white border-0 rounded-4">
+
+                <h3 class="fw-bold">
+                    Absent Students
+                </h3>
+
+                <h1 class="display-5 fw-bold">
+                    @ViewBag.AbsentStudents
+                </h1>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FEES -->
+
+    <div class="row mt-5 mb-5">
+
+        <div class="col-md-6 mb-4">
+
+            <div class="card p-4 shadow-lg text-center bg-primary text-white border-0 rounded-4">
+
+                <h3 class="fw-bold">
+                    Fees Paid
+                </h3>
+
+                <h1 class="display-5 fw-bold">
+                    @ViewBag.FeesPaidStudents
+                </h1>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-6 mb-4">
+
+            <div class="card p-4 shadow-lg text-center bg-warning text-dark border-0 rounded-4">
+
+                <h3 class="fw-bold">
+                    Fees Pending
+                </h3>
+
+                <h1 class="display-5 fw-bold">
+                    @ViewBag.FeesPendingStudents
+                </h1>
+
+            </div>
+
+        </div>
+
+    </div>
+<div class="card shadow p-4 mt-5">
+
+    <h3 class="text-center mb-4">
+
+        Student Analytics
+
+    </h3>
+
+    <canvas id="studentChart"
+            height="120">
+    </canvas>
+
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+    var ctx =
+        document.getElementById('studentChart');
+
+    new Chart(ctx,
+    {
+        type: 'bar',
+
+        data:
+        {
+            labels:
+            [
+                'Maths',
+                'Science',
+                'English'
+            ],
+
+            datasets:
+            [{
+                label: 'Students',
+
+                data:
+                [
+                    @ViewBag.MathsCount,
+                    @ViewBag.ScienceCount,
+                    @ViewBag.EnglishCount
+                ],
+
+                borderWidth: 1
+            }]
+        }
+    });
+
+</script>
